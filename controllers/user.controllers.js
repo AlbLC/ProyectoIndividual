@@ -21,10 +21,7 @@ const bcrypt = require("bcrypt");
 
 
 
-/**
- * Creamos una constante que guarda los valores de los inputs en una funcion
- * para validacion de registro.
- */
+
 const user = {
   saveDataForm: (req, res) => {
     let nombre = req.body.nombre;
@@ -34,31 +31,31 @@ const user = {
     let telefono = req.body.telefono;
     let dni = req.body.dni;
     let direccion = req.body.direccion;
-    // const emailExp = new RegExp(/^([\d\w_\.-]+)@([\d\w\.-]+)\.([\w\.]{3})$/);
-    // const nameExp = new RegExp(/^([A-Za-z]{1,15})$/);
-    // const unNameExp = new RegExp(/^([A-Za-z]{1,15})$/);
-    // const telfExp = new RegExp(/^\d{9}$/);
-    // const dniExp = new RegExp(/^\d{8}[a-zA-Z]$/);
-    // const passExp = new RegExp(
-    //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/
-    // );
-    //const direccionExp = new RegExp(/^([A-Za-z]{1,15})$/);
+    const emailExp = new RegExp(/^([\d\w_\.-]+)@([\d\w\.-]+)\.([\w\.]{3})$/);
+    const nameExp = new RegExp(/^([A-Za-z]{1,15})$/);
+    const unNameExp = new RegExp(/^([A-Za-z]{1,15})$/);
+    const telfExp = new RegExp(/^\d{9}$/);
+    const dniExp = new RegExp(/^\d{8}[a-zA-Z]$/);
+    const passExp = new RegExp(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/
+    );
+    const direccionExp = new RegExp(/^([A-Za-z]{1,15})$/);
 
 
-    
-    // if (
-    //   !emailExp.test(email) ||
-    //   !nameExp.test(nombre) ||
-    //   !unNameExp.test(apellidos) ||
-    //   !dniExp.test(dni) ||
-    //   !passExp.test(contrasena) ||
-    //   contrasena != contrasenaConf ||
-    //   !telfExp.test(telefono) ||
-    //   !direccionExp.test(direccion)
-    // ) {
-    //   console.log("campos incorrectos"); //renderizar una pagina de campos incorrectos
-    // } else {
-      
+
+    if (
+      !emailExp.test(email) ||
+      !nameExp.test(nombre) ||
+      !unNameExp.test(apellido) ||
+      !dniExp.test(dni) ||
+      !passExp.test(contrasena) ||
+
+      !telfExp.test(telefono) ||
+      !direccionExp.test(direccion)
+    ) {
+      console.log("campos incorrectos"); //renderizar una pagina de campos incorrectos
+    } else {
+
 
       bcrypt.hash(contrasena, 10, (err, palabraSecretaEncriptada) => {
         if (err) {
@@ -90,25 +87,53 @@ const user = {
             console.log(data);
           });
         }
-res.send("Registro completado");
+        res.send("Registro completado");
       });
-    //  let obj = { dni: req.body.dni }
+      //  let obj = { dni: req.body.dni }
 
-    //   res.render("index", {
-    //     dni: [obj]
-    //     // usuarioRegistrado: "Usuario registrado correctamente",
-    // })
-    
-  
+      //   res.render("index", {
+      //     dni: [obj]
+      //     // usuarioRegistrado: "Usuario registrado correctamente",
+      // })
+
+
+    }
   },
-  registerUser: (req, res) => {
-    res.render("index");
-  },
- 
-  
+  login: (req, res) => {
+
+
+
+    loginEmail = req.body.userLog;
+    passLog = req.body.passLog;
+
+
+
+
+    let nameCorrect = `SELECT email,contrasena FROM Usuarios where email = '${loginEmail}'`;
+
+    connection.query(nameCorrect, (err, rows) => {
+      if (err) throw err;
+
+      console.log('Usuario: \n', rows);
+      bcrypt.compare(passLog, rows[0].contrasena).then(function (result) {
+        // result == true
+        if (result && rows[0].email == loginEmail) {
+          console.log("Usuario correcto");
+          res.send("Usuario correcto");
+
+        } else {
+          console.log("Usuario incorrecto");
+
+        }
+      }
+      )
+    }
+    )
+  }
+
 }
 
 
 
-  module.exports = user;
+module.exports = user;
 

@@ -14,6 +14,7 @@ const user = require("../controllers/user.controllers")
 //Rutas de inicio
 
 router.post("/registro",user.saveDataForm);
+router.post("/login",user.login);
 
 
 
