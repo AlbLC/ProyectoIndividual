@@ -7,7 +7,7 @@
 const router = require("express").Router();
 const pages = require("../controllers/pages.controllers")
 const user = require("../controllers/user.controllers")
-
+const spares = require("../controllers/spares.controllers")
 
 
  
@@ -15,6 +15,7 @@ const user = require("../controllers/user.controllers")
 
 router.post("/registro",user.saveDataForm);
 router.post("/login",user.login);
+// router.get("/tienda",spares.tienda);
 
 
 

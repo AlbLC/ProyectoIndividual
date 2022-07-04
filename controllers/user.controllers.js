@@ -13,6 +13,7 @@ const connection = require("../database/sqlDataBase");
 const mysql = require("mysql");
 const { propfind } = require("moongose/routes");
 const bcrypt = require("bcrypt");
+let userId
 
 
 
@@ -24,6 +25,7 @@ const bcrypt = require("bcrypt");
 
 const user = {
   saveDataForm: (req, res) => {
+    console.log(req.body);
     let nombre = req.body.nombre;
     let apellido = req.body.apellido;
     let email = req.body.email;
@@ -39,20 +41,23 @@ const user = {
     const passExp = new RegExp(
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])([A-Za-z\d$@$!%*?&]|[^ ]){8,15}$/
     );
-    const direccionExp = new RegExp(/^([A-Za-z]{1,15})$/);
+    const direccionExp = new RegExp(/^[#.0-9a-zA-Z\s,-]+$/);
+      
 
 
 
     if (
+      
+
       !emailExp.test(email) ||
       !nameExp.test(nombre) ||
       !unNameExp.test(apellido) ||
       !dniExp.test(dni) ||
       !passExp.test(contrasena) ||
-
-      !telfExp.test(telefono) ||
+      !telfExp.test(telefono) || 
       !direccionExp.test(direccion)
-    ) {
+      
+     ) {
       console.log("campos incorrectos"); //renderizar una pagina de campos incorrectos
     } else {
 
@@ -103,36 +108,62 @@ const user = {
 
 
 
-    loginEmail = req.body.userLog;
-    passLog = req.body.passLog;
+    loginEmail = req.body.email;
+    passLog = req.body.contrasena;
+    var userId;
 
 
 
-
-    let nameCorrect = `SELECT email,contrasena FROM Usuarios where email = '${loginEmail}'`;
-
-    connection.query(nameCorrect, (err, rows) => {
-      if (err) throw err;
-
-      console.log('Usuario: \n', rows);
-      bcrypt.compare(passLog, rows[0].contrasena).then(function (result) {
-        // result == true
-        if (result && rows[0].email == loginEmail) {
-          console.log("Usuario correcto");
-          res.send("Usuario correcto");
-
-        } else {
-          console.log("Usuario incorrecto");
-
-        }
+    try {
+        
+      let nameCorrect = `SELECT email,contrasena FROM Usuarios where email = '${loginEmail}'`;
+console.log(nameCorrect)
+      if(nameCorrect != null){
+        connection.query(nameCorrect, (err, rows) => {
+          if (err) throw err;
+    
+          console.log('Usuario: \n', rows);
+          bcrypt.compare(passLog, rows[0].contrasena).then(function (result) {
+            // result == true
+            
+            if (result && rows[0].email == loginEmail) {
+              console.log("Usuario correcto");
+              console.log(result)
+              let selectQuery = "SELECT * FROM ?? WHERE ?? = ?";
+              // //`SELECT * FROM Usuarios WHERE email = ${loginEmail}`
+              let query3 = mysql.format(selectQuery, [
+                "Usuarios",
+                "email",
+                loginEmail,
+              ]);
+              console.log("selectQuery" + selectQuery);
+              console.log("query3" + query3);
+              res.send("Usuario y contraseña correcta")
+              connection.query(query3, (err, data) => {
+                if (err) throw err;
+                // console.log(data);
+                var userId = data[0].id
+                logNombre = data[0].nombre;
+                logApellido = data[0].apellido;
+                logDni = data[0].dni;
+                logEmail = data[0].email;
+                logTelefono = data[0].telefono;
+                logDireccion = data[0].direccion;
+                console.log(userId)
+              });
+            } else if(contrasena == undefined){
+              res.send("email incorrecto")
+            }
+          });
+        });
+      }else{
+        console.log("datos incorrectos")
       }
-      )
+    } catch (error) {
+      res.send("email o contraseña incorrectos")
     }
-    )
-  }
-
 }
-
+}
 
 
 module.exports = user;
