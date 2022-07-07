@@ -1,16 +1,18 @@
 
 import React, { useState } from "react";
-import './Login.css';
+import PUsuarioLogueado from "../pages/PUsuarioLogueado";
+
+
 
 function Login() {
 
   const [emailLog,setEmailLog] = useState("");
   const [contrasenaLog,setContrasenaLog] = useState("");
+  const [loginOk,setLoginOk] = useState(false);
 
   const enviar = () => {
      
-    console.log(emailLog);
-    console.log(contrasenaLog);
+    
      
     const requestOptions = {
           method: "POST",
@@ -22,11 +24,18 @@ function Login() {
         };
         fetch("login", requestOptions)
         .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          
+            setLoginOk(data.status);
+          
         
-    };
-  return <div>
+        });
 
-    Email:
+      }     
+    return <div>
+
+     Email:
     <input type="text" className="email" placeholder="Email" onChange={(e) => setEmailLog(e.target.value)} />
     <br></br>
     Contraseña:
@@ -34,7 +43,9 @@ function Login() {
 
     <input type="submit" className="send" value="Log" onClick={enviar}/>
 
-  </div>;
-}
+   {loginOk ? <PUsuarioLogueado /> : ""}
 
+  </div>;
+
+}
 export default Login;

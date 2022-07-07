@@ -114,56 +114,64 @@ const user = {
 
 
 
-    try {
+    
         
       let nameCorrect = `SELECT email,contrasena FROM Usuarios where email = '${loginEmail}'`;
-console.log(nameCorrect)
-      if(nameCorrect != null){
+
+      
         connection.query(nameCorrect, (err, rows) => {
           if (err) throw err;
     
           console.log('Usuario: \n', rows);
+          if (rows.length > 0) {
           bcrypt.compare(passLog, rows[0].contrasena).then(function (result) {
             // result == true
             
             if (result && rows[0].email == loginEmail) {
               console.log("Usuario correcto");
               console.log(result)
-              let selectQuery = "SELECT * FROM ?? WHERE ?? = ?";
-              // //`SELECT * FROM Usuarios WHERE email = ${loginEmail}`
-              let query3 = mysql.format(selectQuery, [
-                "Usuarios",
-                "email",
-                loginEmail,
-              ]);
-              console.log("selectQuery" + selectQuery);
-              console.log("query3" + query3);
-              res.send("Usuario y contraseña correcta")
-              connection.query(query3, (err, data) => {
-                if (err) throw err;
-                // console.log(data);
-                var userId = data[0].id
-                logNombre = data[0].nombre;
-                logApellido = data[0].apellido;
-                logDni = data[0].dni;
-                logEmail = data[0].email;
-                logTelefono = data[0].telefono;
-                logDireccion = data[0].direccion;
-                console.log(userId)
-              });
-            } else if(contrasena == undefined){
-              res.send("email incorrecto")
-            }
-          });
+            //   let selectQuery = "SELECT * FROM ?? WHERE ?? = ?";
+              
+            //   let query3 = mysql.format(selectQuery, [
+            //     "Usuarios",
+            //     "email",
+            //     loginEmail,
+            //   ]);
+            //   console.log("selectQuery" + selectQuery);
+            //   console.log("query3" + query3);
+            //  // res.send("Usuario y contraseña correcta")
+                 res.json({status: true})
+            //   connection.query(query3, (err, data) => {
+            //     if (err) throw err;
+            //     // console.log(data);
+            //     var userId = data[0].id
+            //     logNombre = data[0].nombre;
+            //     logApellido = data[0].apellido;
+            //     logDni = data[0].dni;
+            //     logEmail = data[0].email;
+            //     logTelefono = data[0].telefono;
+            //     logDireccion = data[0].direccion;
+            //     console.log(userId)
+            //   });
+            } else{
+              //res.send("email incorrecto")
+              res.json({status: false})
+            
+          }
         });
       }else{
-        console.log("datos incorrectos")
+        
+        res.json({status: false})
       }
-    } catch (error) {
-      res.send("email o contraseña incorrectos")
-    }
+      })
+    
+    
+
 }
+
+
 }
+
 
 
 module.exports = user;

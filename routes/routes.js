@@ -15,7 +15,7 @@ const spares = require("../controllers/spares.controllers")
 
 router.post("/registro",user.saveDataForm);
 router.post("/login",user.login);
-// router.get("/tienda",spares.tienda);
+router.get("/tienda",spares.tienda);
 
 
 
