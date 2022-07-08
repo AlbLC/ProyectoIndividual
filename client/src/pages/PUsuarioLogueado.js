@@ -9,7 +9,7 @@ class PUsuarioLogueado extends Component{
         return (
             
             <div>
-                <h1>--Pagina Tienda-----</h1>
+                <h1>--- * Pagina Tienda * ---</h1>
                 <br/>
 
 <button className="buttonHome"><Link to={"/PRepuestos"} className="buttonHome" >Repuestos</Link></button>

@@ -6,6 +6,7 @@ class PCuenta extends Component{
         render() {
             return (
                 <div>
+                    
                     <Cuenta/>
                 </div>
                 );

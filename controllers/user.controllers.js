@@ -116,7 +116,7 @@ const user = {
 
     
         
-      let nameCorrect = `SELECT email,contrasena FROM Usuarios where email = '${loginEmail}'`;
+      let nameCorrect = `SELECT * FROM Usuarios where email = '${loginEmail}'`;
 
       
         connection.query(nameCorrect, (err, rows) => {
@@ -140,7 +140,9 @@ const user = {
             //   console.log("selectQuery" + selectQuery);
             //   console.log("query3" + query3);
             //  // res.send("Usuario y contraseña correcta")
-                 res.json({status: true})
+                 res.json({
+                  status: true
+                })
             //   connection.query(query3, (err, data) => {
             //     if (err) throw err;
             //     // console.log(data);
@@ -166,6 +168,22 @@ const user = {
       })
     
     
+
+},
+cuenta: (req, res) => {
+
+  loginEmail = req.body.email;
+
+  let query  = `SELECT * FROM Usuarios where email = '${loginEmail}'`;
+  
+  connection.query(query, (err, rows) => {
+    if(err) throw err;
+    console.log('Datos de tabla1: \n', rows);
+    
+    
+res.json(rows)
+    //connection.end();
+});
 
 }
 

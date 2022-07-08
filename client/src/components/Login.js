@@ -25,12 +25,18 @@ function Login() {
         fetch("login", requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          
+          
+          localStorage.setItem("user", emailLog);
+          
+
           
             setLoginOk(data.status);
           
         
         });
+
+        
 
       }     
     return <div>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+    import React, { Component } from "react";
     import { Routes, Route } from "react-router-dom";
     
     import PRegistro from "../pages/PRegistro";
@@ -7,13 +7,17 @@ import React, { Component } from "react";
     import PRepuestos from "../pages/PRepuestos";
     import PReparacion from "../pages/PReparacion";
     import PCuenta from "../pages/PCuenta";
+    
+
     class Main extends Component {
         
 
         render() {
             return (
             <div>
+               
                 <Routes>
+                
                     <Route path="/PCuenta" element={<PCuenta/>} />
                     <Route path="/PReparacion" element={<PReparacion />} />
                     <Route path="/PRepuestos" element={<PRepuestos />} />
