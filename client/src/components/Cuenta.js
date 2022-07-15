@@ -36,22 +36,22 @@ return(
     <h1>Tu cuenta</h1>
     <h5>Tus datos personales</h5>
     {user ? user.map((msj,i) => <div>
-      {msj.nombre}
+     <a>Nombre:</a><br/> {msj.nombre}
       <br/>
       <br/>
-      {msj.apellido}
+      <a>Apellido:</a><br/> {msj.apellido}
       <br/>
       <br/>
-      {msj.dni}
+      <a>Telefono:</a><br/> {msj.dni}
       <br/>
       <br/>
-      {msj.email}
+      <a>Email:</a><br/> {msj.email}
       <br/>
       <br/>
-      {msj.telefono}
+      <a>Dni:</a><br/> {msj.telefono}
       <br/>
       <br/>
-      {msj.direccion}
+      <a>Direccion:</a><br/> {msj.direccion}
       
       </div>) : "no hay datos"}
       <br/>

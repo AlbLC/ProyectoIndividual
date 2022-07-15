@@ -7,7 +7,7 @@
     import PRepuestos from "../pages/PRepuestos";
     import PReparacion from "../pages/PReparacion";
     import PCuenta from "../pages/PCuenta";
-    
+    import PHome from "../pages/PHome";
 
     class Main extends Component {
         
@@ -17,7 +17,7 @@
             <div>
                
                 <Routes>
-                
+                    <Route path="/" element={<PHome/>} />
                     <Route path="/PCuenta" element={<PCuenta/>} />
                     <Route path="/PReparacion" element={<PReparacion />} />
                     <Route path="/PRepuestos" element={<PRepuestos />} />

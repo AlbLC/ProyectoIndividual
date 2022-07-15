@@ -1,11 +1,13 @@
 
-import React, { useState } from "react";
+import React, { useState,Link } from "react";
 import PUsuarioLogueado from "../pages/PUsuarioLogueado";
+import { Form, Button,Nav,Navbar, Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 
 
 function Login() {
-
+const navigate = useNavigate();
   const [emailLog,setEmailLog] = useState("");
   const [contrasenaLog,setContrasenaLog] = useState("");
   const [loginOk,setLoginOk] = useState(false);
@@ -36,22 +38,50 @@ function Login() {
         
         });
 
-        
+       
+      
 
       }     
-    return <div>
+    return (
+      <div className="">
+        
 
-     Email:
-    <input type="text" className="email" placeholder="Email" onChange={(e) => setEmailLog(e.target.value)} />
-    <br></br>
-    Contraseña:
-    <input type="password" className="contrasena" placeholder="Contraseña" onChange={(e) => setContrasenaLog(e.target.value)} />
+        <Navbar bg="dark" variant="blue">
+                <Container>
+                    <Nav className="me-auto">
+                        <Nav.Link href="/"  variant="info">Home</Nav.Link>{' '}
+                        {/* <Nav.Link href="/Registro" variant="secondary">Registro</Nav.Link>{' '} */}
+                        <Nav.Link href="/Login" variant="secondary">Login</Nav.Link>{' '}
+                    </Nav>
+                </Container>
+            </Navbar>
+    
+    <div className="Reg">
 
-    <input type="submit" className="send" value="Log" onClick={enviar}/>
 
-   {loginOk ? <PUsuarioLogueado /> : ""}
+<Form>
+    <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" placeholder="Pon tu email" onChange={(e) => setEmailLog(e.target.value)} />
+        </Form.Group>
+        
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label>Contraseña</Form.Label>
+          <Form.Control type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasenaLog(e.target.value)} />
+        </Form.Group>
+        <Button variant="dark" type="button" onClick={(enviar)} >
+          Login
+        </Button>
 
-  </div>;
+        </Form>
+
+
+        
+   
+</div>
+<br/>
+{loginOk ? navigate("/PUsuarioLogueado") : ""}
+  </div>)
 
 }
 export default Login;

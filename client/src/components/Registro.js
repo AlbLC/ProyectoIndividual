@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import './Registro.css';
-import { Form, Button } from "react-bootstrap";
+import './Global.css';
+import { Form, Button,Nav,Navbar,Container } from "react-bootstrap";
 
 
 
@@ -35,12 +35,29 @@ function Registro() {
     };
     fetch("registro", requestOptions)
       .then((response) => response.json())
+      // .then((res) => {
+      //   windows.location.assign("/")})
+      
+
 
   };
 
   return (
-   
-    <div className="Reg">
+    <div>
+
+<Navbar bg="dark" variant="blue">
+                <Container>
+                    <Nav className="me-auto">
+                        <Nav.Link href="/"  variant="info">Home</Nav.Link>{' '}
+                        {/* <Nav.Link href="/Registro" variant="secondary">Registro</Nav.Link>{' '} */}
+                        <Nav.Link href="/Login" variant="secondary">Login</Nav.Link>{' '}
+                    </Nav>
+                </Container>
+            </Navbar>
+
+
+    <div class="Reg">
+     
       
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -79,12 +96,16 @@ function Registro() {
         </Form.Group>
 
         
-        <Button variant="primary" type="button" onClick={enviar} >
+        <Button  variant="dark" type="button" onClick={enviar} >
           Registrarse
         </Button>
       </Form>
+      
+      
+      
 
 
+    </div>
     </div>
   );
 }

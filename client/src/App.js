@@ -10,17 +10,16 @@ class App extends Component {
 render() {
     return (
         
-            <div className="App">
+            
                 <BrowserRouter>
-                <a href="http://localhost:3000/">Home</a>
-                <br/>
-                <Link to={"/Registro"}>Registro</Link>
-                <br/>
-                <Link to={"/Login"}>Login</Link>
+                
+                <div className="App">
+                
                 <MainComponent />
                 
-                 </BrowserRouter>
+                
             </div>
+            </BrowserRouter>
        
     );
 }
