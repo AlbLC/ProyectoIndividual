@@ -39,12 +39,28 @@ FOREIGN KEY(fk_id_pedido) REFERENCES Pedidos(id) ON UPDATE CASCADE ON DELETE CAS
 
 CREATE TABLE Repuestos (
 id INT AUTO_INCREMENT,
-precio VARCHAR(300) NOT NULL,
-modelo VARCHAR(300) NOT NULL,
 marca VARCHAR(300) NOT NULL,
-tipoRepuesto VARCHAR(300),
+modelo VARCHAR(300) NOT NULL,
+tipoRepuesto VARCHAR(300) NOT NULL,
+precio VARCHAR(300) NOT NULL,
 PRIMARY KEY(id)
 );
+
+SELECT * FROM Repuestos;
+
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone11Pro", "Pantalla", "79€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone11Pro", "FlexCarga", "49€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone11Pro", "Pcb", "299€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone11Pro", "Chasis", "149€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone12Pro", "Pantalla", "149€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone12Pro", "FlexCarga", "69€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone12Pro", "Pcb", "399€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone12Pro", "Chasis", "199€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone13Pro", "Pantalla", "199€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone13Pro", "FlexCarga", "79€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone13Pro", "Pcb", "499€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone13Pro", "Chasis", "249€");
+
 
 CREATE TABLE Pedidos_Repuestos(
 id INT AUTO_INCREMENT,
@@ -75,6 +91,8 @@ id INT AUTO_INCREMENT,
 marca VARCHAR(300) NOT NULL,
 modelo VARCHAR(300) NOT NULL,
 precio VARCHAR(300),
+email VARCHAR(300),
+descripcion text,
 fk_id_pedido INT NOT NULL,
 PRIMARY KEY(id),
 FOREIGN KEY(fk_id_pedido) REFERENCES Pedidos(id) ON UPDATE CASCADE ON DELETE CASCADE

@@ -12,64 +12,24 @@ return(
 <div>
 <Navbar bg="dark" variant="blue">
                 <Container>
-                    <Nav className="me-auto">
-                        <Nav.Link href="/"  variant="info">Home</Nav.Link>{' '}
-                        <Nav.Link href="/Registro" variant="secondary">Registro</Nav.Link>{' '}
-                        <Nav.Link href="/Login" variant="secondary">Login</Nav.Link>{' '}
+                    <Nav className="me-auto" id="nav">
+                    <Button size="lg" className="buttonHome" variant="dark"><Nav.Link href="/"  variant="info">Home</Nav.Link>{' '}</Button>
+                    <Button size="lg" className="buttonHome" variant="dark"><Nav.Link href="/Registro" variant="secondary">Registro</Nav.Link>{' '}</Button>
+                    <Button size="lg" className="buttonHome" variant="dark"><Nav.Link href="/Login" variant="secondary">Login</Nav.Link>{' '}</Button>
                     </Nav>
                 </Container>
             </Navbar>
-            <div>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+      <div id="home">
+        
+        
+      <img src="../imagenesCarru/repara_iphone_sea_cual_sea.jpeg" alt="logo"/>
+        
+        
+        
+        </div>      
+                
 
-            <Carousel variant="dark">
-  <Carousel.Item>
-    <img
-      className="100px"
-      src=""
-      alt="First slide"
-    />
-    <Carousel.Caption>
-      <h3></h3>
-      <p></p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="100px"
-      src=""
-      alt="Second slide"
-    />
-
-    <Carousel.Caption>
-      <h3></h3>
-      <p></p>
-    </Carousel.Caption>
-  </Carousel.Item>
-  <Carousel.Item>
-    <img
-      className="100px"
-      src=""
-      alt="Third slide"
-    />
-
-    <Carousel.Caption>
-      <h3></h3>
-      <p></p>
-    </Carousel.Caption>
-  </Carousel.Item>
-</Carousel>
-
-</div>
-
+            
 </div>
 )
 }

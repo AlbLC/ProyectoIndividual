@@ -8,6 +8,8 @@
     import PReparacion from "../pages/PReparacion";
     import PCuenta from "../pages/PCuenta";
     import PHome from "../pages/PHome";
+    import PLogout from "../pages/PLogout";
+    import PCarrito from "../pages/PCarrito";
 
     class Main extends Component {
         
@@ -24,6 +26,8 @@
                     <Route path="/PUsuarioLogueado" element={<PUsuarioLogueado />} />                    
                     <Route path="/Registro" element={<PRegistro />} />
                     <Route path="/Login" element={<PLogin />} />
+                    <Route path="/Logout" element={<PLogout />} />
+                    <Route path="/PCarrito" element={<PCarrito />} />
                 </Routes>
             </div>
             );

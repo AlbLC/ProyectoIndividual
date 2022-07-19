@@ -1,12 +1,16 @@
-import React, { useState } from "react";
-import './Global.css';
+import React, { useEffect, useState } from "react";
+
+
 import { Form, Button,Nav,Navbar,Container } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 
 
 
 function Registro() {
-
+const navigate = useNavigate();
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
@@ -14,12 +18,22 @@ function Registro() {
   const [telefono, setTelefono] = useState("");
   const [dni, setDni] = useState("");
   const [direccion, setDireccion] = useState("");
-  // const [info, setInfo] = useState("");
+  const [registro1, setRegistro1] = useState("");
+  
+  useEffect(() => {
+    if (registro1 != ""&&registro1!="El usuario existe") {
+      navigate('/login')
+    }
+   }, [registro1]);
+
+
+
 
 
   const enviar = () => {
 
 
+    
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -35,10 +49,17 @@ function Registro() {
     };
     fetch("registro", requestOptions)
       .then((response) => response.json())
-      // .then((res) => {
-      //   windows.location.assign("/")})
-      
+     
+      .then((response) => {
 
+        setRegistro1(response.message)
+       
+
+      });
+      
+      
+      
+      
 
   };
 
@@ -47,10 +68,10 @@ function Registro() {
 
 <Navbar bg="dark" variant="blue">
                 <Container>
-                    <Nav className="me-auto">
-                        <Nav.Link href="/"  variant="info">Home</Nav.Link>{' '}
+                    <Nav className="me-auto" id="nav">
+                    <Button size="lg" className="buttonHome" variant="dark"><Nav.Link href="/"  variant="info">Home</Nav.Link>{' '}</Button>
                         {/* <Nav.Link href="/Registro" variant="secondary">Registro</Nav.Link>{' '} */}
-                        <Nav.Link href="/Login" variant="secondary">Login</Nav.Link>{' '}
+                        <Button size="lg" className="buttonHome" variant="dark"><Nav.Link href="/Login" variant="secondary">Login</Nav.Link>{' '}</Button>
                     </Nav>
                 </Container>
             </Navbar>
@@ -58,14 +79,14 @@ function Registro() {
 
     <div class="Reg">
      
-      
+    <div id="solicita">
       <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="">
           <Form.Label>Nombre</Form.Label>
           <Form.Control type="text" placeholder="Pon tu nombre" onChange={(e) => setNombre(e.target.value)} />
         </Form.Group>
         
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="">
           <Form.Label>Apellido</Form.Label>
           <Form.Control type="text" placeholder="Pon tu apellido" onChange={(e) => setApellido(e.target.value)} />
         </Form.Group>
@@ -75,27 +96,27 @@ function Registro() {
           <Form.Control type="email" placeholder="Pon tu email" onChange={(e) => setEmail(e.target.value)} />
         </Form.Group>
         
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Contraseña</Form.Label>
           <Form.Control type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasena(e.target.value)} />
         </Form.Group>
         
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="">
           <Form.Label>Telefono</Form.Label>
           <Form.Control type="text" placeholder="Pon tu telefono" onChange={(e) => setTelefono(e.target.value)} />
         </Form.Group>
         
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="">
           <Form.Label>Dni</Form.Label>
           <Form.Control type="text" placeholder="Pon tu Dni" onChange={(e) => setDni(e.target.value)} />
         </Form.Group>
         
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="">
           <Form.Label>Direccion</Form.Label>
           <Form.Control type="text" placeholder="Pon tu direccion" onChange={(e) => setDireccion(e.target.value)} />
         </Form.Group>
 
-        
+        <p>{ registro1!="El usuario existe" ?"":"El username ya existe"}</p>
         <Button  variant="dark" type="button" onClick={enviar} >
           Registrarse
         </Button>
@@ -103,9 +124,10 @@ function Registro() {
       
       
       
-
+</div>
 
     </div>
+    
     </div>
   );
 }

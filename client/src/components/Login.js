@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 
 
 
-function Login() {
-const navigate = useNavigate();
+const Login = (props) => {
+
   const [emailLog,setEmailLog] = useState("");
   const [contrasenaLog,setContrasenaLog] = useState("");
   const [loginOk,setLoginOk] = useState(false);
+  const navigate = useNavigate();
+
 
   const enviar = () => {
      
@@ -19,24 +21,30 @@ const navigate = useNavigate();
     const requestOptions = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: emailLog, 
+          body: JSON.stringify({ 
+            email: emailLog, 
             contrasena: contrasenaLog
            }) 
 
         };
+        
         fetch("login", requestOptions)
         .then((response) => response.json())
-        .then((data) => {
-          
-          
-          localStorage.setItem("user", emailLog);
-          
+        .then((response) => {
+          setLoginOk(response.message)
+          if(response.message===true){
+            
+            localStorage.setItem('user', 
+              response.loginEmail
+               
 
-          
-            setLoginOk(data.status);
-          
-        
-        });
+            );
+
+            navigate('/PUsuarioLogueado')
+          }else{
+            setLoginOk(response.message)
+          }
+          });
 
        
       
@@ -46,18 +54,18 @@ const navigate = useNavigate();
       <div className="">
         
 
-        <Navbar bg="dark" variant="blue">
+        <Navbar bg="dark" variant="blue" >
                 <Container>
-                    <Nav className="me-auto">
-                        <Nav.Link href="/"  variant="info">Home</Nav.Link>{' '}
-                        {/* <Nav.Link href="/Registro" variant="secondary">Registro</Nav.Link>{' '} */}
-                        <Nav.Link href="/Login" variant="secondary">Login</Nav.Link>{' '}
+                    <Nav className="me-auto" id="nav" >
+                    <Button size="lg" className="buttonHome" variant="dark"><Nav.Link href="/"  variant="info">Home</Nav.Link>{' '}</Button>
+                    <Button size="lg" className="buttonHome" variant="dark"><Nav.Link href="/Registro" variant="secondary">Registro</Nav.Link>{' '}</Button>
+                        {/* <Nav.Link href="/Login" variant="secondary">Login</Nav.Link>{' '} */}
                     </Nav>
                 </Container>
             </Navbar>
     
     <div className="Reg">
-
+<div id="solicita">
 
 <Form>
     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -65,11 +73,11 @@ const navigate = useNavigate();
           <Form.Control type="email" placeholder="Pon tu email" onChange={(e) => setEmailLog(e.target.value)} />
         </Form.Group>
         
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Contraseña</Form.Label>
           <Form.Control type="password" placeholder="Pon tu contraseña" onChange={(e) => setContrasenaLog(e.target.value)} />
         </Form.Group>
-        <Button variant="dark" type="button" onClick={(enviar)} >
+        <Button variant="dark" size="lg" type="button" onClick={() => enviar()} >
           Login
         </Button>
 
@@ -77,10 +85,10 @@ const navigate = useNavigate();
 
 
         
-   
+        </div>
 </div>
 <br/>
-{loginOk ? navigate("/PUsuarioLogueado") : ""}
+<p> {loginOk != true ? "" : ""}</p>
   </div>)
 
 }

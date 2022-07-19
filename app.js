@@ -2,8 +2,9 @@
 
 const express = require("express");
 const app = express();
-require("./database/mongo")
-require("./database/sqlDataBase")
+
+//require("./database/sqlDataBase")
+require("./databases/sql")
 
 const router = require("./routes/routes")
 const port = 5050;
@@ -18,4 +19,4 @@ app.use(express.json());
 
 app.use("/", router);
 
-app.listen(port , console.log("Sevidor escuchando en puerto"+ port))
+app.listen(port, () => console.log(`Servidor escuchando por el puerto ${port}!`));
