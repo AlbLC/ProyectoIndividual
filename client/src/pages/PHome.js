@@ -1,15 +1,16 @@
 import React , {Component} from "react"
-import Cuenta from "../components/Cuenta";
-    
-class PCuenta extends Component{
+import Home from "../components/Home";
+
+    class PHome extends Component{
         
         render() {
             return (
                 <div>
-                    
-                    <Cuenta/>
+                   
+                    <Home />
+                
                 </div>
                 );
         }
     }
-    export default PCuenta;
+    export default PHome;

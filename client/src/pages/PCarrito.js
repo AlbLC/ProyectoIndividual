@@ -1,15 +1,15 @@
 import React , {Component} from "react"
-import Cuenta from "../components/Cuenta";
+import Carrito from "../components/Carrito";
     
-class PCuenta extends Component{
+class PCarrito extends Component{
         
         render() {
             return (
                 <div>
                     
-                    <Cuenta/>
+                    <Carrito/>
                 </div>
                 );
         }
     }
-    export default PCuenta;
+    export default PCarrito;

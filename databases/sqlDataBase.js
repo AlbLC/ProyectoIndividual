@@ -1,6 +1,11 @@
 /**
  * Conexion con la base de datos MySql
  */
+
+
+
+
+
 const mysql = require("mysql");
 const connection = mysql.createConnection({
   host: "localhost",

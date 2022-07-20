@@ -1,16 +1,16 @@
 import React , {Component} from "react"
-import Login from "../components/Login";
+import Logout from "../components/Login";
 
-    class PLogin extends Component{
+    class PLogout extends Component{
         
         render() {
             return (
                 <div>
                    
-                    <Login />
+                    <Logout />
                 
                 </div>
                 );
         }
     }
-    export default PLogin;
+    export default PLogout;

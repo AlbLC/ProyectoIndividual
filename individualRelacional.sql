@@ -1,6 +1,7 @@
 #DROP DATABASE individualRelacional;
 
 
+
 CREATE DATABASE individualRelacional;
 
 USE individualRelacional;
@@ -39,12 +40,28 @@ FOREIGN KEY(fk_id_pedido) REFERENCES Pedidos(id) ON UPDATE CASCADE ON DELETE CAS
 
 CREATE TABLE Repuestos (
 id INT AUTO_INCREMENT,
-precio VARCHAR(300) NOT NULL,
-modelo VARCHAR(300) NOT NULL,
 marca VARCHAR(300) NOT NULL,
-tipoRepuesto VARCHAR(300),
+modelo VARCHAR(300) NOT NULL,
+tipoRepuesto VARCHAR(300) NOT NULL,
+precio VARCHAR(300) NOT NULL,
 PRIMARY KEY(id)
 );
+
+SELECT * FROM Repuestos;
+
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 11 Pro", "Pantalla", "79€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 11 Pro", "FlexCarga", "49€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 11 Pro", "Pcb", "299€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 11 Pro", "Chasis", "149€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 12 Pro", "Pantalla", "149€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 12 Pro", "FlexCarga", "69€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 12 Pro", "Pcb", "399€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 12 Pro", "Chasis", "199€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 13 Pro", "Pantalla", "199€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 13 Pro", "FlexCarga", "79€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 13 Pro", "Pcb", "499€");
+INSERT INTO Repuestos VALUES(null, "Apple", "Iphone 13 Pro", "Chasis", "249€");
+
 
 CREATE TABLE Pedidos_Repuestos(
 id INT AUTO_INCREMENT,
@@ -72,14 +89,17 @@ FOREIGN KEY(fk_id_pedido) REFERENCES Pedidos(id) ON UPDATE CASCADE ON DELETE CAS
 
 CREATE TABLE Reparaciones (
 id INT AUTO_INCREMENT,
-marca VARCHAR(300) NOT NULL,
-modelo VARCHAR(300) NOT NULL,
+email VARCHAR(300),
+marca VARCHAR(300),
+modelo VARCHAR(300),
+descripcion text,
 precio VARCHAR(300),
-fk_id_pedido INT NOT NULL,
+fk_id_pedido INT,
 PRIMARY KEY(id),
 FOREIGN KEY(fk_id_pedido) REFERENCES Pedidos(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+SELECT * FROM Reparaciones;
 
 CREATE TABLE Almacen (
 id INT AUTO_INCREMENT,
