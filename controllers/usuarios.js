@@ -111,14 +111,11 @@ console.log(usuario);
         message: true,
         loginEmail: usuario.email,
        
-
-        //nombre: usuario.nombre,
-        //apellido: usuario.apellido,
-        //rol: usuario.rol  
+  
       })
     
     } else {
-      //res.send("Contraseña erronea");
+      
       res.json({
         message: "Contraseña erronea",
       });
