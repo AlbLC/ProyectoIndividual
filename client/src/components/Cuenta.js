@@ -62,7 +62,7 @@ return(
               
 
             
-    <Button variant="light" className="buttonHome"><Link to={"/PUsuarioLogueado"} className="buttonHome" >Volver</Link></Button>
+    <Button variant="dark" className="buttonHome"><Link to={"/PUsuarioLogueado"} className="buttonHome" >Volver</Link></Button>
     
 </div>
 )

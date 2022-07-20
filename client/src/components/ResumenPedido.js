@@ -8,12 +8,19 @@ import Tarjeta from "./Tarjeta";
 function ResumenPedido(props) {
 
 
-  console.log(props);
+ 
+  function compraRealizada() {
+    props.setMostrarCarrito(false);
+    props.setMostrarProductos(false);
+    props.setMostrarCompra(true)
+    props.setMostrarResumen(false);
+  
+  }
 
   return (
 
     <div>
-<div id="letras3">     
+<div id="letras">     
 <h1>Resumen pedido</h1>
 </div> 
 <div id="Resumen" >
@@ -52,7 +59,7 @@ return(
 <Tarjeta/>
 <br/>
 <br/>
-<Button className="buttonHome" variant="dark" size="lg">Comprar</Button>
+<Button className="buttonHome" variant="dark" size="lg" onClick={compraRealizada}>Comprar</Button>
     
     </div>
   )

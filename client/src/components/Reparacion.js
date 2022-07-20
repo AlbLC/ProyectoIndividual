@@ -63,9 +63,9 @@ return(
                 </Container>
             </Navbar>
   
-  <div id="letras2">
+  <div id="letras">
     
-    <h3>Solicita tu reparación</h3>
+    <h1>Solicita tu reparación</h1>
     </div>
     <div id="solicita">
     <Form>

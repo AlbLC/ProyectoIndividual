@@ -4,7 +4,7 @@ import  { Card,Button,Form,Nav,Navbar,Container } from "react-bootstrap";
 
 import Carrito from "./Carrito";
 import ResumenPedido from "./ResumenPedido";
-
+import Compra from "./Compra";
 
 
 function Repuestos () {
@@ -14,6 +14,8 @@ function Repuestos () {
     const [mostrarProductos,setMostrarProductos] = useState(true);
     const [mostrarCarrito,setMostrarCarrito] = useState(false);
     const [mostrarResumen,setMostrarResumen] = useState(false);
+    const [mostrarCompra,setMostrarCompra] = useState(false);
+    
    
 
   useEffect(() => {
@@ -57,10 +59,13 @@ return(
                     </Nav>
                 </Container>
             </Navbar>
-            {mostrarCarrito ? <Carrito datos={rep} setMostrarCarrito={setMostrarCarrito} setMostrarProductos={setMostrarProductos} setMostrarResumen={setMostrarResumen}/> : ""}
+            {mostrarCarrito ? <Carrito datos={rep} setMostrarCarrito={setMostrarCarrito} setMostrarProductos={setMostrarProductos} setMostrarResumen={setMostrarResumen} setMostrarCompra={setMostrarCompra}/> : ""}
             
-            {mostrarResumen ? <ResumenPedido datos={rep}
-            ></ResumenPedido>:""}
+            {mostrarResumen ? <ResumenPedido datos={rep} setMostrarCarrito={setMostrarCarrito} setMostrarProductos={setMostrarProductos} setMostrarResumen={setMostrarResumen} setMostrarCompra={setMostrarCompra}/> : ""}
+            
+
+            {mostrarCompra ? <Compra></Compra>:""}
+
             {mostrarProductos ? 
   <div id="Repuestos">
 {message ? message.map((rep,i) => <div id="card2">

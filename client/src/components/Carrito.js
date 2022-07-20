@@ -12,6 +12,7 @@ function Carrito(props) {
 function confirmarCarrito() {
   props.setMostrarCarrito(false);
   props.setMostrarProductos(false);
+  props.setMostrarCompra(false)
   props.setMostrarResumen(true);
 
 }
